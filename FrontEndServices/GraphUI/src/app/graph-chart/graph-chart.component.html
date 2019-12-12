@@ -1,0 +1,41 @@
+<div class="row" *ngIf="graphPoints != null && graphPoints.length>0">
+  <div class="col-md-4">
+      <b>Min Price:</b> {{minPrice.marketPrice }} on ({{minPrice.chartDate | date: 'dd/MM/yyyy HH:mm'}})
+  </div> 
+  <div class="col-md-4">
+    <b>Max Price:</b> {{maxPrice.marketPrice}} on ({{maxPrice.chartDate | date: 'dd/MM/yyyy HH:mm'}})
+  </div> 
+  <div class="col-md-4">
+    <b>Average Price:</b> {{average | number:'2.2'}} 
+  </div> 
+</div>
+<br/>
+<div class="row" *ngIf="graphPoints != null && graphPoints.length>0">
+  <div class="col-md-12">
+    <b>Expensive Hour:</b> {{expensiveHour[1].chartDate | date: 'dd/MM/yyyy HH:mm'}} - {{expensiveHour[0].chartDate | date: 'dd/MM/yyyy HH:mm'}} with price difference of {{(expensiveHour[1].marketPrice - expensiveHour[0].marketPrice) | number:'2.2'}}
+  </div> 
+</div>
+
+<hr/>
+
+<div class="row" *ngIf="graphPoints == null || graphPoints.length == 0">
+  <div class="col-md-12 text-center">
+    <b>No graph data available</b>
+  </div> 
+</div>
+<ngx-charts-bar-vertical *ngIf="graphPoints != null && graphPoints.length>0"
+  [view]="view"
+  [scheme]="colorScheme"
+  [results]="graphPoints"
+  [gradient]="gradient"
+  [xAxis]="showXAxis"
+  [yAxis]="showYAxis"
+  [legend]="showLegend"
+  [showDataLabel]="showDataLabel"
+  [showXAxisLabel]="showXAxisLabel"
+  [showYAxisLabel]="showYAxisLabel"
+  [xAxisLabel]="xAxisLabel"
+  [xAxisTickFormatting]='formatDate'
+  [yAxisLabel]="yAxisLabel"
+  (select)="onSelect($event)">
+</ngx-charts-bar-vertical>

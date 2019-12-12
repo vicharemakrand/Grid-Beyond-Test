@@ -1,0 +1,28 @@
+<div class="row">
+        <div class="col-md-2">
+                Select File (extn : csv):
+        </div> 
+        <div class="col-md-10">
+            <input #uploadFileCsv type="file" ng2FileSelect [uploader]="uploader" />
+        </div> 
+</div>  
+<br/>
+<div class="row">
+    <div class="col-md-2">
+        Upload progress:
+    </div> 
+    <div class="col-md-10">
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+        </div>
+    </div> 
+</div>
+<hr/>
+<div class="row">
+    <div class="col-md-12">
+        <button type="button" class="btn btn-success btn-s"
+        (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+         <span class="glyphicon glyphicon-upload"></span> Upload
+        </button>
+    </div> 
+</div>
